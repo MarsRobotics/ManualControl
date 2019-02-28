@@ -33,17 +33,26 @@ class MovementData:
         return
 '''
 Key press       Command
- space           stop everything, cancelling current execution
- p               pack in
- d               pack out
- 0               pause
- 1               drive direction 1
- 2               drive direction 2
- 3               drive direction 3
- 4               drive direction 4
- 5               drive direction 5
+ space           stop all motors
+ q               quit & exit
+ 
+ i               pack in
+ o               pack out
+ 
+ up arrow        drive forward
+ down arrow      drive backwards
+ left arrow      turn left & drive forward
+ right arrow     turn right & drive forward
+ 
+ a               turn articulation joints left (don't move drive motors)
+ d               turn articulation joints right (don't move drive motors) 
  6               drive direction 6
- 7               send test message
+ 
+ r               raise bucket chain
+ l               lower  bucket chain
+ t               turn bucket chain
+ 
+ c              turn conveyor belt
 '''
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -59,32 +68,53 @@ print("accepted connection")
 def on_press(key):
     data = MovementData()
 
-    if key == KeyCode.from_char('0'):
+    if key == Key.space:
+        data.stop = 1
         sendData(sock, data)
         time.sleep(.1)
-        data.pause = 0
-        print("pause")
-        sendData(sock, data)
-    elif key == KeyCode.from_char('1'):
-        data.driveDirection = 1
-        print("drive direction is 1")
-        sendData(sock, data)
-    elif key == KeyCode.from_char('2'):
-        data.driveDirection = 2
-        print("drive direction is 2")
-        sendData(sock, data)
-    elif key == KeyCode.from_char('7'):
-        data.driveDirection = 1
-        print("sent a test message")
+        print("STOP")
         sendData(sock, data)
     elif key == KeyCode.from_char('q'):
-        print("sssstop")
+        print("exit")
+        data.stop = 1
         sendData(sock, data)
         sock.shutdown(socket.SHUT_RDWR)
         sock.close()
         s.shutdown(socket.SHUT_RDWR)
         s.close()
         exit()
+    elif key == KeyCode.from_char('i'):
+        data.packIn = 1
+        print("pack in")
+        sendData(sock, data)
+    elif key == KeyCode.from_char('o'):
+        data.packOut = 1
+        print("pack out")
+        sendData(sock, data)
+    elif key == Key.up:
+        data.driveDirection = 1
+        print("drive forward")
+        sendData(sock, data)
+    elif key == Key.down:
+        data.driveDirection = 2
+        print("drive backward")
+        sendData(sock, data)
+    elif key == Key.left:
+        data.driveDirection = 3
+        print("drive left and forward")
+        sendData(sock, data)
+    elif key == Key.right:
+        data.driveDirection = 4
+        print("drive right and forward")
+        sendData(sock, data)
+    elif key == KeyCode.from_char('a'):
+        data.driveDirection = 5
+        print("articulate left")
+        sendData(sock, data)
+    elif key == KeyCode.from_char('d'):
+        data.driveDirection = 6
+        print("articulate right")
+        sendData(sock, data)
     else:
         print("Not a valid command")
         return

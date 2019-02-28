@@ -1,14 +1,19 @@
 ## Manual Control
 
-server: 
+### server: 
 
--contains python file(s) to be run from laptop
+-contains python file(s) to be run from laptop:
+necessary installs:
+	-pip3 (python3 installer) 
+	-```pip3 install pynput```
 
-src:
+1. run ```python3 ManualControl.py``` from server directory
+
+### src:
 - code to run on pi with following commands
 
 1. Start communication with arduino (port may vary, also try ttyACM1, ttyAMA0, ttyAMA1)
-```rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=9600``
+```rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=9600```
 
 2. **optional: to see message output **
 Commands sent from pi to arduino
@@ -29,3 +34,12 @@ and change the self.HOST parameter to the laptop ip
 5. on pi:
 run the ManualControlState file using the manual ros packages
 ```rosrun manual ManualControlState.py```
+
+###msg 
+contains message definitions
+
+
+###misc
+
+the driveDirectionMapping file stores the drive direction ints and what they should map to in the arduino code.
+updated 2/27/19.
