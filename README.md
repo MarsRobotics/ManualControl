@@ -9,9 +9,12 @@
 
 ##### Pi:
 1. ssh into pi with 2 sessions
-2. on first : run ```rosrun manual serialLaunch.launch```
-3. on second: run ```tmux```  
-4. then:  ```./startScript``` to start  
+2. edit ManualControlState file with ip of laptop:
+    ```nano ros_catkin_ws/src/robot/manual/src/ManualControlState.py```
+    scroll and update ip with laptop ip
+3. on first session: run ```rosrun manual serialLaunch.launch```
+4. on second: run ```tmux```  
+5. then:  ```./startScript``` to start  
 
 
 ##### sending commands:
