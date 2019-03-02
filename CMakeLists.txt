@@ -52,6 +52,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
  add_message_files(
    FILES
+   SimpleCommand.msg
    MovementCommand.msg
    MovementFeedback.msg
    ImageProc.msg

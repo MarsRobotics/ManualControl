@@ -17,19 +17,7 @@ import time
 class MovementData:
 
     def __init__(self):
-        self.serialID = 0
-        self.driveDirection = 0
-        self.stop = 0
-        self.packIn = 0
-        self.packOut = 0
-        self.raiseBucketChain = 0
-        self.lowerBucketChain = 0
-        self.speedBucketChain = 0
-        self.raiseConveyorBelt = 0
-        self.lowerConveyorBelt = 0
-        self.speedConveyorBelt = 0
-        self.misc1 = 0
-        self.misc2 = 0
+        self.data = 0
         return
 '''
 Key press       Command
@@ -46,13 +34,17 @@ Key press       Command
  
  a               turn articulation joints left (don't move drive motors)
  d               turn articulation joints right (don't move drive motors) 
- 6               drive direction 6
  
  r               raise bucket chain
  l               lower  bucket chain
  t               turn bucket chain
  
  c              turn conveyor belt
+ f              raise conveyor belt
+ v              lower conveyor belt 
+ 
+ 
+ 9              test function
 '''
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -69,14 +61,14 @@ def on_press(key):
     data = MovementData()
 
     if key == Key.space:
-        data.stop = 1
+        data.data = 7
         sendData(sock, data)
         time.sleep(.1)
         print("STOP")
         sendData(sock, data)
     elif key == KeyCode.from_char('q'):
         print("exit")
-        data.stop = 1
+        data.data = 7
         sendData(sock, data)
         sock.shutdown(socket.SHUT_RDWR)
         sock.close()
@@ -84,40 +76,70 @@ def on_press(key):
         s.close()
         exit()
     elif key == KeyCode.from_char('i'):
-        data.packIn = 1
+        data.data = 8
         print("pack in")
         sendData(sock, data)
     elif key == KeyCode.from_char('o'):
-        data.packOut = 1
+        data.data = 9
         print("pack out")
         sendData(sock, data)
     elif key == Key.up:
-        data.driveDirection = 1
+        data.data = 1
         print("drive forward")
         sendData(sock, data)
     elif key == Key.down:
-        data.driveDirection = 2
+        data.data = 2
         print("drive backward")
         sendData(sock, data)
     elif key == Key.left:
-        data.driveDirection = 3
+        data.data = 3
         print("drive left and forward")
         sendData(sock, data)
     elif key == Key.right:
-        data.driveDirection = 4
+        data.data = 4
         print("drive right and forward")
         sendData(sock, data)
     elif key == KeyCode.from_char('a'):
-        data.driveDirection = 5
+        data.data = 5
         print("articulate left")
         sendData(sock, data)
     elif key == KeyCode.from_char('d'):
-        data.driveDirection = 6
+        data.data = 6
         print("articulate right")
         sendData(sock, data)
+    elif key == KeyCode.from_char('r'):
+        data.data = 11
+        print("raise bucket chain")
+        sendData(sock, data)
+    elif key == KeyCode.from_char('l'):
+        data.data = 12
+        print("lower bucket chain")
+        sendData(sock, data)
+    elif key == KeyCode.from_char('t'):
+        data.data = 10
+        print("turn bucket chain")
+        sendData(sock, data)
+    elif key == KeyCode.from_char('c'):
+        data.data = 15
+        print("turn conveyor belt")
+        sendData(sock, data)
+    elif key == KeyCode.from_char('f'):
+        data.data = 13
+        print("raise conveyor belt")
+        sendData(sock, data)
+    elif key == KeyCode.from_char('v'):
+        data.data = 14
+        print("lower conveyor belt")
+        sendData(sock, data)
+    elif key == KeyCode.from_char('9'):
+        data.data = 999
+        print("test function ")
+        sendData(sock, data)
+
     else:
         print("Not a valid command")
-        return
+
+
 
 def on_release(key):
     if key == Key.esc:

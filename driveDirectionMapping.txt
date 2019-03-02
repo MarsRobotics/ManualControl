@@ -1,29 +1,18 @@
-data.stop: 1 STOP all motors
-           0 do nothing
 
-data.packIn: 1 Pack in
-             0 do nothing
-
-data.packOut: 1 Pack out
-              0 do nothing
-
-data.driveDirection: 1 drive forward
-                     2 drive backward
-                     3 drive forward & turn articulation motors 'left'
-                     4 drive forward & turn articulation motors 'right'
-                     5 turn articulation motors 'left'
-                     6 turn articulation motors 'right'
-
-data.raiseBucketChain: 1 raise 0 do nothing
-data.lowerBucketChain: 1 lower 0 do nothing
-data.speedBucketChain: ?? not important to implement now
-data.raiseConveyorBelt = 1 raise 0 do nothing
-data.lowerConveyorBelt = 1 lower 0 do nothing
-data.speedConveyorBelt = ?? not important to implement now
-
-
---other parameters not used yet --
-
-data.serialID: if we ever need to identify specific mesages
-data.misc1: if we want to add additional data without remaking libraries
-data.misc2: same as above
+data
+ 1 drive forward
+ 2 drive backward
+ 3 drive forward & turn articulation motors 'left'
+ 4 drive forward & turn articulation motors 'right'
+ 5 turn articulation motors 'left'
+ 6 turn articulation motors 'right'
+ 7 STOP all motors
+ 8 pack in
+ 9 pack out
+ 10 turn bucket chain
+ 11 raise bucket chain
+ 12 lower bucket chain
+ 13 raise conveyor
+ 14 lower conveyor
+ 15 raise conveyor
+ 999 test function
