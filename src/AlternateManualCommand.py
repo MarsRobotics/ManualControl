@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python3
 import sys
 sys.path.append("/home/pi/ros_catkin_ws/src/robot/manual/src")
 import rospy
@@ -18,7 +18,8 @@ Key press       Command
  s              drive backwards
  a              turn articulation joints left
  d              turn articulation joints right
-
+ p              pack in
+ o              pack out
 
  r               raise bucket chain
  f               lower  bucket chain
@@ -53,13 +54,19 @@ def get_commands():
     elif command == 'd':
         publish(6)
         print("turn right")
+    elif command == 'p':
+        publish(8)
+        print("pack in")
+    elif command == 'o':
+        publish(9)
+        print("pack out")
     elif command == 'r':
         publish(11)
         print('raise bucket chain')
-    elif command == 't':
+    elif command == 'f':
         publish(12)
         print('lower bucket chain')
-    elif command == 'f':
+    elif command == 't':
         publish(10)
         print('run bucket chain slow')
     elif command == 'y':
