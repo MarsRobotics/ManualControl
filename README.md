@@ -8,14 +8,14 @@
 1. ssh into pi with 2 sessions ```ssh pi@192.168.1.45```
 3. on first session: run ```roslaunch manual serialLaunch.launch``` to connect pi with arduinos
 
-	Alternately, these are the commands for each node. the port options are ACM0, ACM1, AMA0, AMA1; try each if errors occur
+	Alternately, these are the commands for each node individually if the launch file errors. the port options are ACM0, ACM1, AMA0, AMA1; try each if errors persist
 	```rosrun rosserial_python serial_node.py __name:=serial_node1 _baud:=9600 _port:=/dev/ttyACM0```
 	and
-	```rosrun rosserial_python serial_node.py __name:=serial_node2 _baud:=9600 _port:-/dev/ttyACM1```
+	```rosrun rosserial_python serial_node.py __name:=serial_node2 _baud:=9600 _port:=/dev/ttyACM1```
 
 4. on second run ```rosrun manual AlternateManualCommand.py``` 
 
-or to view message & message feedback run:
+Alternately, to view message & message feedback run:
      on second: run ```tmux```  
      then:  ```./startScript``` to start  & view message output
 
