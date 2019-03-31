@@ -21,10 +21,11 @@ Key press       Command
  p              pack in
  o              pack out
 
- r               raise bucket chain
- f               lower  bucket chain
- t               run bucket chain slow 
- y               run bucket chain fast with ramp up
+ r              raise bucket chain
+ f              lower  bucket chain
+ t              run bucket chain slow 
+ y              run bucket chain fast with ramp up
+ g							dig and lower simultaneously
 
  z              raise conveyor belt
  x              lower conveyor belt 
@@ -81,7 +82,10 @@ def get_commands():
     elif command == 'c':
         publish(15)
         print('run conveyor')
-    elif command == '8':
+    elif command == 'g':
+				publish(19)
+				print('dig and lower')
+		elif command == '8':
         publish(999)
         print('test')
         publish(7)
