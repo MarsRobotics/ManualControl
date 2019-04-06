@@ -30,15 +30,16 @@ Key press       Command
 
  w              drive forward
  s              drive backwards
- a              turn articulation joints left
- d              turn articulation joints right
+ a              turn in place left
+ d              turn in place right
  p              pack in
  o              pack out
 
- r               raise bucket chain
- f               lower  bucket chain
- t               run bucket chain slow 
- y               run bucket chain fast with ramp up
+ r              raise bucket chain
+ f              lower  bucket chain
+ t              run bucket chain slow (reverse)
+ y              run bucket chain fast with ramp up
+ g		run bucket chain fast with ramp up while slowly lowering
 
  z              raise conveyor belt
  x		lower conveyor belt
